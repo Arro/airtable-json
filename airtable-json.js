@@ -30,7 +30,7 @@ var airtableJson = function airtableJson(_ref) {
             other = _ref2.other;
 
         thing.fields[local] = base(other).find(thing.fields[local][0]).then(function (o) {
-          return o._rawJson;
+          return o._rawJson.fields;
         });
       });
 
