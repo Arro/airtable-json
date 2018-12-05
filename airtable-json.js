@@ -14,10 +14,17 @@ var airtableJson = function airtableJson(_ref) {
   var base = _ref.base,
       primary = _ref.primary,
       view = _ref.view,
-      populate = _ref.populate;
+      _ref$populate = _ref.populate,
+      populate = _ref$populate === undefined ? [] : _ref$populate,
+      filter = _ref.filter;
 
   var things = void 0;
-  return base(primary).select({ view: view }).all().then(function (_things) {
+  var select_object = { view: view };
+  if (filter) {
+    select_object.filterByFormula = filter;
+  }
+
+  return base(primary).select(select_object).all().then(function (_things) {
     things = _things.map(function (_thing) {
       return _thing._rawJson;
     });
@@ -29,9 +36,13 @@ var airtableJson = function airtableJson(_ref) {
         var local = _ref2.local,
             other = _ref2.other;
 
-        thing.fields[local] = base(other).find(thing.fields[local][0]).then(function (o) {
-          return o._rawJson.fields;
-        });
+        thing.fields[local] = _bluebird2.default.all(thing.fields[local].map(function (t) {
+          return base(other).find(t).then(function (o) {
+            var obj = o._rawJson.fields;
+            obj.__id = o._rawJson.id;
+            return obj;
+          });
+        }));
       });
 
       return _bluebird2.default.props(thing.fields);
