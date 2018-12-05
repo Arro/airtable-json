@@ -1,6 +1,6 @@
 {
   "name": "airtable-json",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "get airtable records, but just in raw json form",
   "main": "airtable-json.js",
   "scripts": {
