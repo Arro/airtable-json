@@ -1,19 +1,20 @@
 airtable-json
 =============
 
+Motivation
+----------
+
+When you want Airtable records to be in a raw json format, and that's all you care about.
 
 
 ```
-import airtable from 'airtable'
 import airtableJson from 'airtable-json'
-
-airtable.configure({ apiKey: '<airtable-auth-key>' })
-const my_base = airtable.base('<airtable-base>')
 
 const getStuff = () => {
   let statuses
   return airtableJson({
-    base: my_base,
+    auth_key: '<airtable-auth-key>',
+    base_name: '<airtable-base>',
     primary: '<table>',
     view: `Main`,
     populate: [{ 
