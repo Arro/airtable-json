@@ -1,14 +1,23 @@
 {
   "name": "airtable-json",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "get airtable records, but just in raw json form",
-  "main": "airtable-json.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
+  "author": "Phil Deschaine",
   "license": "MIT",
+  "main": "dist/airtable-json.js",
+  "scripts": {
+    "build": "npx babel src --out-dir dist"
+  },
   "dependencies": {
-    "bluebird": "^3.5.3"
+    "airtable": "^0.8.1",
+    "bluebird": "^3.7.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.7",
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.8.0",
+    "eslint-plugin-babel": "^5.3.0"
   }
 }
