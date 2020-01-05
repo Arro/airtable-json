@@ -7,6 +7,9 @@ Motivation
 When you want Airtable records to be in a raw json format, and that's all you care about.
 
 
+
+Usage
+-----
 ```
 import airtableJson from 'airtable-json'
 
