@@ -1,23 +1,61 @@
 {
   "name": "airtable-json",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "get airtable records, but just in raw json form",
   "author": "Phil Deschaine",
   "license": "MIT",
   "main": "dist/airtable-json.js",
   "scripts": {
-    "build": "npx babel src --out-dir dist"
+    "build": "npx babel src --out-dir dist",
+    "test": "npx ava"
   },
   "dependencies": {
     "airtable": "^0.8.1",
     "bluebird": "^3.7.2"
   },
   "devDependencies": {
+    "@ava/babel": "^0.7.0",
     "@babel/cli": "^7.7.7",
     "@babel/core": "^7.7.7",
+    "@babel/plugin-transform-runtime": "^7.7.6",
     "@babel/preset-env": "^7.7.7",
+    "@babel/runtime": "^7.0.0-beta.55",
+    "ava": "^2.4.0",
     "babel-eslint": "^10.0.3",
     "eslint": "^6.8.0",
-    "eslint-plugin-babel": "^5.3.0"
+    "eslint-plugin-babel": "^5.3.0",
+    "esm": "^3.2.25",
+    "nock": "^11.7.2"
+  },
+  "ava": {
+    "babel": {
+      "testOptions": {
+        "babelrc": false,
+        "configFile": false,
+        "presets": [
+          [
+            "@babel/preset-env",
+            {
+              "useBuiltIns": "entry",
+              "corejs": 3
+            }
+          ]
+        ],
+        "plugins": [
+          [
+            "@babel/plugin-transform-runtime",
+            {
+              "regenerator": true
+            }
+          ]
+        ]
+      }
+    },
+    "files": [
+      "test/main.js"
+    ],
+    "require": [
+      "esm"
+    ]
   }
 }
