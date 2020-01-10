@@ -1,6 +1,6 @@
 {
   "name": "airtable-json",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "get airtable records, but just in raw json form",
   "author": "Phil Deschaine",
   "license": "MIT",
@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "airtable": "^0.8.1",
-    "bluebird": "^3.7.2",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
