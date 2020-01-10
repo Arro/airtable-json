@@ -11,7 +11,8 @@
   },
   "dependencies": {
     "airtable": "^0.8.1",
-    "bluebird": "^3.7.2"
+    "bluebird": "^3.7.2",
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
     "@ava/babel": "^0.7.0",
@@ -52,7 +53,8 @@
       }
     },
     "files": [
-      "test/main.js"
+      "test/main.js",
+      "test/populate.js"
     ],
     "require": [
       "esm"
