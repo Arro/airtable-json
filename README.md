@@ -15,10 +15,10 @@ import airtableJson from 'airtable-json'
 
 const getStuff = async() => {
   const songs = await airtableJson({
-    auth_key,
-    base_name,
-    primary: 'Songs',
-    view: 'Main'
+    auth_key, // this is your airtable api key, starting with 'key'
+    base_name, // this is the base api key, which starts with 'app'
+    primary: 'Songs', // this is the table name you want to pull
+    view: 'Main' // this is the view you want to pull
   })
 
   console.log(songs)
@@ -81,8 +81,8 @@ const getStuff = async() => {
     primary: 'Songs',
     view: 'Main View',
     populate: [{
-      local: "Artists",
-      other: "Artists"
+      local: "Artists", // column name of the primary table specified a few lines up
+      other: "Artists" // table name of the other table in the same base
     }, {
       local: "Remixers",
       other: "Artists"
