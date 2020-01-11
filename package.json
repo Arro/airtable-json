@@ -1,6 +1,6 @@
 {
   "name": "airtable-json",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "get airtable records, but just in raw json form",
   "author": "Phil Deschaine",
   "license": "MIT",
@@ -57,7 +57,8 @@
     },
     "files": [
       "test/main.js",
-      "test/populate.js"
+      "test/populate.js",
+      "test/filter.js"
     ],
     "require": [
       "esm"

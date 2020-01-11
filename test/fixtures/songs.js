@@ -1,4 +1,4 @@
-const songs = {
+export default {
   "records": [
     {
       "id": "recXq4opAEsHJ6ogv",
@@ -54,5 +54,3 @@ const songs = {
     }
   ]
 }
-
-export default songs
