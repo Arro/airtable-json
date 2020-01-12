@@ -1,5 +1,8 @@
 import airtable from 'airtable'
 import keyBy from 'lodash/fp/keyBy'
+import chunk from 'lodash/fp/chunk'
+
+const max_ids_per_query = 40
 
 async function handlePopulate({ base, things, local, other }) {
   const foreign_ids =  things.reduce((acc, thing) => {
@@ -9,24 +12,30 @@ async function handlePopulate({ base, things, local, other }) {
     return acc
   }, [])
 
+
   const comparisons = foreign_ids.map((id) => `RECORD_ID() = '${id}'`)
-  const filterByFormula = `OR(${comparisons.join(', ')})`
+  const chunked_comparisons = chunk(max_ids_per_query, comparisons)
+  let all_results = []
 
-  let results  = await base(other).select({ filterByFormula }).all()
+  for (const c of chunked_comparisons) {
+    const filterByFormula = `OR(${c.join(', ')})`
+    let results  = await base(other).select({ filterByFormula }).all()
+    results = results.map((results) => {
+      return {
+        ...results._rawJson.fields,
+        __id: results.id
+      }
+    })
+    all_results = all_results.concat(results)
+  }
 
-  results = results.map((results) => {
-    return {
-      ...results._rawJson.fields,
-      __id: results.id
-    }
-  })
-  results = keyBy('__id', results)
+  all_results = keyBy('__id', all_results)
 
   const new_things = things.map((thing) => {
     if (thing[local]) {
       return {
         ...thing,
-        [local]: thing[local].map((id) => results[id])
+        [local]: thing[local].map((id) => all_results[id])
       }
     }
     return thing
