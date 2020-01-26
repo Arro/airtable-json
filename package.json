@@ -1,6 +1,6 @@
 {
   "name": "airtable-json",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "get airtable records, but just in raw json form",
   "author": "Phil Deschaine",
   "license": "MIT",
@@ -11,7 +11,7 @@
   },
   "scripts": {
     "build": "npx babel src --out-dir dist",
-    "test": "npx ava"
+    "test": "npx nyc ava"
   },
   "dependencies": {
     "airtable": "^0.8.1",
@@ -29,7 +29,8 @@
     "eslint": "^6.8.0",
     "eslint-plugin-babel": "^5.3.0",
     "esm": "^3.2.25",
-    "nock": "^11.7.2"
+    "nock": "^11.7.2",
+    "nyc": "^15.0.0"
   },
   "ava": {
     "babel": {
@@ -64,5 +65,18 @@
     "require": [
       "esm"
     ]
+  },
+  "nyc": {
+    "all": true,
+    "include": [
+      "src/airtable-json.js"
+    ],
+    "reporter": [
+      "lcov",
+      "text"
+    ]
+  },
+  "engines": {
+    "node": ">=13.5.0"
   }
 }
