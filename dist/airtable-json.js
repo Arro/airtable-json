@@ -19,6 +19,12 @@ var _keyBy = _interopRequireDefault(require("lodash/fp/keyBy"));
 
 var _chunk = _interopRequireDefault(require("lodash/fp/chunk"));
 
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -30,10 +36,8 @@ function handlePopulate(_x) {
 }
 
 function _handlePopulate() {
-  _handlePopulate = (0, _asyncToGenerator2["default"])(
-  /*#__PURE__*/
-  _regenerator["default"].mark(function _callee2(_ref) {
-    var base, things, local, other, foreign_ids, comparisons, chunked_comparisons, all_results, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, c, filterByFormula, results, new_things;
+  _handlePopulate = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(_ref) {
+    var base, things, local, other, foreign_ids, comparisons, chunked_comparisons, all_results, _iterator2, _step2, c, filterByFormula, results, new_things;
 
     return _regenerator["default"].wrap(function _callee2$(_context2) {
       while (1) {
@@ -52,78 +56,59 @@ function _handlePopulate() {
             });
             chunked_comparisons = (0, _chunk["default"])(max_ids_per_query, comparisons);
             all_results = [];
-            _iteratorNormalCompletion2 = true;
-            _didIteratorError2 = false;
-            _iteratorError2 = undefined;
-            _context2.prev = 8;
-            _iterator2 = chunked_comparisons[Symbol.iterator]();
+            _iterator2 = _createForOfIteratorHelper(chunked_comparisons);
+            _context2.prev = 6;
 
-          case 10:
-            if (_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done) {
-              _context2.next = 21;
+            _iterator2.s();
+
+          case 8:
+            if ((_step2 = _iterator2.n()).done) {
+              _context2.next = 18;
               break;
             }
 
             c = _step2.value;
             filterByFormula = "OR(".concat(c.join(', '), ")");
-            _context2.next = 15;
+            _context2.next = 13;
             return base(other).select({
               filterByFormula: filterByFormula
             }).all();
 
-          case 15:
+          case 13:
             results = _context2.sent;
             results = results.map(function (results) {
-              return _objectSpread({}, results._rawJson.fields, {
+              return _objectSpread(_objectSpread({}, results._rawJson.fields), {}, {
                 __id: results.id
               });
             });
             all_results = all_results.concat(results);
 
-          case 18:
-            _iteratorNormalCompletion2 = true;
-            _context2.next = 10;
+          case 16:
+            _context2.next = 8;
             break;
 
-          case 21:
-            _context2.next = 27;
+          case 18:
+            _context2.next = 23;
             break;
+
+          case 20:
+            _context2.prev = 20;
+            _context2.t0 = _context2["catch"](6);
+
+            _iterator2.e(_context2.t0);
 
           case 23:
             _context2.prev = 23;
-            _context2.t0 = _context2["catch"](8);
-            _didIteratorError2 = true;
-            _iteratorError2 = _context2.t0;
 
-          case 27:
-            _context2.prev = 27;
-            _context2.prev = 28;
+            _iterator2.f();
 
-            if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
-              _iterator2["return"]();
-            }
+            return _context2.finish(23);
 
-          case 30:
-            _context2.prev = 30;
-
-            if (!_didIteratorError2) {
-              _context2.next = 33;
-              break;
-            }
-
-            throw _iteratorError2;
-
-          case 33:
-            return _context2.finish(30);
-
-          case 34:
-            return _context2.finish(27);
-
-          case 35:
+          case 26:
             all_results = (0, _keyBy["default"])('__id', all_results);
             new_things = things.map(function (thing) {
               if (thing[local]) {
-                return _objectSpread({}, thing, (0, _defineProperty2["default"])({}, local, thing[local].map(function (id) {
+                return _objectSpread(_objectSpread({}, thing), {}, (0, _defineProperty2["default"])({}, local, thing[local].map(function (id) {
                   return all_results[id];
                 })));
               }
@@ -132,23 +117,19 @@ function _handlePopulate() {
             });
             return _context2.abrupt("return", new_things);
 
-          case 38:
+          case 29:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[8, 23, 27, 35], [28,, 30, 34]]);
+    }, _callee2, null, [[6, 20, 23, 26]]);
   }));
   return _handlePopulate.apply(this, arguments);
 }
 
-var airtableJson =
-/*#__PURE__*/
-function () {
-  var _ref3 = (0, _asyncToGenerator2["default"])(
-  /*#__PURE__*/
-  _regenerator["default"].mark(function _callee(_ref2) {
-    var auth_key, base_name, primary, view, _ref2$populate, populate, filter, base, select_object, things, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, _step$value, local, other;
+var airtableJson = /*#__PURE__*/function () {
+  var _ref3 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(_ref2) {
+    var auth_key, base_name, primary, view, _ref2$populate, populate, filter, base, select_object, things, _iterator, _step, _step$value, local, other;
 
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
@@ -175,24 +156,23 @@ function () {
           case 7:
             things = _context.sent;
             things = things.map(function (thing) {
-              return _objectSpread({}, thing._rawJson.fields, {
+              return _objectSpread(_objectSpread({}, thing._rawJson.fields), {}, {
                 __id: thing.id
               });
             });
-            _iteratorNormalCompletion = true;
-            _didIteratorError = false;
-            _iteratorError = undefined;
-            _context.prev = 12;
-            _iterator = populate[Symbol.iterator]();
+            _iterator = _createForOfIteratorHelper(populate);
+            _context.prev = 10;
 
-          case 14:
-            if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
-              _context.next = 22;
+            _iterator.s();
+
+          case 12:
+            if ((_step = _iterator.n()).done) {
+              _context.next = 19;
               break;
             }
 
             _step$value = _step.value, local = _step$value.local, other = _step$value.other;
-            _context.next = 18;
+            _context.next = 16;
             return handlePopulate({
               local: local,
               other: other,
@@ -200,57 +180,39 @@ function () {
               things: things
             });
 
-          case 18:
+          case 16:
             things = _context.sent;
 
-          case 19:
-            _iteratorNormalCompletion = true;
-            _context.next = 14;
+          case 17:
+            _context.next = 12;
             break;
 
-          case 22:
-            _context.next = 28;
+          case 19:
+            _context.next = 24;
             break;
+
+          case 21:
+            _context.prev = 21;
+            _context.t0 = _context["catch"](10);
+
+            _iterator.e(_context.t0);
 
           case 24:
             _context.prev = 24;
-            _context.t0 = _context["catch"](12);
-            _didIteratorError = true;
-            _iteratorError = _context.t0;
 
-          case 28:
-            _context.prev = 28;
-            _context.prev = 29;
+            _iterator.f();
 
-            if (!_iteratorNormalCompletion && _iterator["return"] != null) {
-              _iterator["return"]();
-            }
+            return _context.finish(24);
 
-          case 31:
-            _context.prev = 31;
-
-            if (!_didIteratorError) {
-              _context.next = 34;
-              break;
-            }
-
-            throw _iteratorError;
-
-          case 34:
-            return _context.finish(31);
-
-          case 35:
-            return _context.finish(28);
-
-          case 36:
+          case 27:
             return _context.abrupt("return", things);
 
-          case 37:
+          case 28:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[12, 24, 28, 36], [29,, 31, 35]]);
+    }, _callee, null, [[10, 21, 24, 27]]);
   }));
 
   return function airtableJson(_x2) {
