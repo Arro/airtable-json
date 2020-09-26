@@ -1,6 +1,6 @@
 {
   "name": "airtable-json",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "description": "get airtable records, but just in raw json form",
   "author": "Phil Deschaine",
   "license": "MIT",
@@ -14,23 +14,23 @@
     "test": "npx nyc ava"
   },
   "dependencies": {
-    "airtable": "^0.9.0",
-    "lodash": "^4.17.19"
+    "airtable": "^0.10.0",
+    "lodash": "^4.17.20"
   },
   "devDependencies": {
     "@ava/babel": "^1.0.1",
-    "@babel/cli": "^7.10.5",
-    "@babel/core": "^7.11.1",
-    "@babel/plugin-transform-runtime": "^7.11.0",
-    "@babel/preset-env": "^7.11.0",
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
+    "@babel/plugin-transform-runtime": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
     "@babel/runtime": "^7.11.2",
-    "ava": "^3.11.1",
+    "ava": "^3.12.1",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.6.0",
+    "eslint": "^7.9.0",
     "eslint-plugin-babel": "^5.3.1",
     "esm": "^3.2.25",
-    "nock": "^13.0.3",
-    "nyc": "^15.0.1"
+    "nock": "^13.0.4",
+    "nyc": "^15.1.0"
   },
   "ava": {
     "babel": {
