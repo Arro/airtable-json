@@ -1,6 +1,6 @@
 {
   "name": "airtable-json",
-  "version": "1.2.8",
+  "version": "1.2.9",
   "description": "get airtable records, but just in raw json form",
   "author": "Phil Deschaine",
   "license": "MIT",
@@ -15,47 +15,24 @@
   },
   "dependencies": {
     "airtable": "^0.10.0",
+    "core-js": "^3.6.5",
     "lodash": "^4.17.20"
   },
   "devDependencies": {
     "@ava/babel": "^1.0.1",
     "@babel/cli": "^7.11.6",
     "@babel/core": "^7.11.6",
-    "@babel/plugin-transform-runtime": "^7.11.5",
     "@babel/preset-env": "^7.11.5",
+    "@babel/register": "^7.11.5",
     "@babel/runtime": "^7.11.2",
-    "ava": "^3.12.1",
+    "ava": "^3.13.0",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.9.0",
+    "eslint": "^7.10.0",
     "eslint-plugin-babel": "^5.3.1",
-    "esm": "^3.2.25",
     "nock": "^13.0.4",
     "nyc": "^15.1.0"
   },
   "ava": {
-    "babel": {
-      "testOptions": {
-        "babelrc": false,
-        "configFile": false,
-        "presets": [
-          [
-            "@babel/preset-env",
-            {
-              "useBuiltIns": "entry",
-              "corejs": 3
-            }
-          ]
-        ],
-        "plugins": [
-          [
-            "@babel/plugin-transform-runtime",
-            {
-              "regenerator": true
-            }
-          ]
-        ]
-      }
-    },
     "files": [
       "test/populate-many.js",
       "test/main.js",
@@ -63,7 +40,7 @@
       "test/filter.js"
     ],
     "require": [
-      "esm"
+      "@babel/register"
     ]
   },
   "nyc": {
@@ -77,6 +54,6 @@
     ]
   },
   "engines": {
-    "node": ">=13.5.0"
+    "node": ">=10.0.0"
   }
 }
