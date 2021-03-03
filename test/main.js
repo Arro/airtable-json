@@ -1,14 +1,14 @@
-import test from 'ava'
-import nock from 'nock'
+import test from "ava"
+import nock from "nock"
 
-import airtableJson from '../src/airtable-json'
-import headers from './fixtures/headers'
-import songs_response from './fixtures/songs'
+import airtableJson from "../src/airtable-json"
+import headers from "./fixtures/headers"
+import songs_response from "./fixtures/songs"
 
-import { auth_key, base_name } from './fixtures/config'
+import { auth_key, base_name } from "./fixtures/config"
 
-test.beforeEach(async(t) => {
-  nock('https://api.airtable.com:443', { encodedQueryParams: true })
+test.beforeEach(async (t) => {
+  nock("https://api.airtable.com:443", { encodedQueryParams: true })
     .get(`/v0/${base_name}/Songs`)
     .query({ view: "Main" })
     .reply(200, songs_response, headers)
@@ -16,8 +16,8 @@ test.beforeEach(async(t) => {
   t.context.songs = await airtableJson({
     auth_key,
     base_name,
-    primary: 'Songs',
-    view: 'Main'
+    primary: "Songs",
+    view: "Main"
   })
 })
 
@@ -46,5 +46,3 @@ test("no createdTime", (t) => {
   t.falsy(t.context.songs[1].createdTime)
   t.falsy(t.context.songs[2].createdTime)
 })
-
-
