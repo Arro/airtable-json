@@ -1,11 +1,11 @@
 "use strict";
 
-require("core-js/modules/es.promise.js");
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+
+require("core-js/modules/es.promise.js");
 
 var _airtable = _interopRequireDefault(require("airtable"));
 
@@ -35,7 +35,7 @@ async function handlePopulate({
   let all_results = [];
 
   for (const c of chunked_comparisons) {
-    const filterByFormula = `OR(${c.join(', ')})`;
+    const filterByFormula = `OR(${c.join(", ")})`;
     let results = await base(other).select({
       filterByFormula
     }).all();
@@ -47,7 +47,7 @@ async function handlePopulate({
     all_results = all_results.concat(results);
   }
 
-  all_results = (0, _keyBy.default)('__id', all_results);
+  all_results = (0, _keyBy.default)("__id", all_results);
   const new_things = things.map(thing => {
     if (thing[local]) {
       return { ...thing,
