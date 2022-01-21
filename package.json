@@ -1,6 +1,6 @@
 {
   "name": "airtable-json",
-  "version": "1.3.2",
+  "version": "2.0.0",
   "description": "get airtable records, but just in raw json form",
   "author": "Phil Deschaine",
   "license": "MIT",
@@ -11,49 +11,37 @@
   },
   "scripts": {
     "build": "npx babel src --out-dir dist",
-    "test": "npx nyc ava"
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules npx jest --coverage"
   },
+  "type": "module",
   "dependencies": {
-    "airtable": "^0.10.1",
-    "core-js": "^3.9.1",
-    "lodash": "^4.17.21"
+    "airtable": "^0.11.1",
+    "core-js": "^3.20.3",
+    "lodash.chunk": "^4.2.0",
+    "lodash.keyby": "^4.6.0"
   },
   "devDependencies": {
-    "@ava/babel": "^1.0.1",
-    "@babel/cli": "^7.13.0",
-    "@babel/core": "^7.13.8",
-    "@babel/eslint-parser": "^7.13.8",
-    "@babel/preset-env": "^7.13.9",
-    "@babel/register": "^7.13.8",
-    "@babel/runtime": "^7.13.9",
-    "ava": "^3.15.0",
-    "eslint": "^7.21.0",
-    "nock": "^13.0.10",
-    "nyc": "^15.1.0",
-    "prettier": "^2.2.1"
+    "@babel/cli": "^7.16.8",
+    "@babel/core": "^7.16.10",
+    "@babel/eslint-parser": "^7.16.5",
+    "@babel/preset-env": "^7.16.10",
+    "@babel/register": "^7.16.9",
+    "cross-env": "^7.0.3",
+    "dotenv": "^14.2.0",
+    "eslint": "^8.7.0",
+    "eslint-plugin-jest": "^25.7.0",
+    "jest": "^27.4.7",
+    "nock": "^13.2.2",
+    "prettier": "^2.5.1"
   },
-  "ava": {
-    "files": [
-      "test/populate-many.js",
-      "test/main.js",
-      "test/populate.js",
-      "test/filter.js"
-    ],
-    "require": [
-      "@babel/register"
-    ]
+  "imports": {
+    "#src/*": "./src/*",
+    "#test/*": "./test/*"
   },
-  "nyc": {
-    "all": true,
-    "include": [
-      "src/airtable-json.js"
-    ],
-    "reporter": [
-      "lcov",
-      "text"
-    ]
+  "exports": {
+    ".": "./dist/airtable-json.js"
   },
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=12.0.0"
   }
 }

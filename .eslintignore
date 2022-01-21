@@ -1,4 +1,4 @@
-!/.eslintrc.js
-!/.babelrc.js
-!/.prettierrc.js
+!/.eslintrc.cjs
+!/.babelrc.cjs
+!/.prettierrc.cjs
 dist

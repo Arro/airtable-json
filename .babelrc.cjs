@@ -9,8 +9,10 @@ module.exports = {
           proposals: true
         },
         targets: {
-          node: "10"
-        }
+          node: "14",
+          esmodules: true
+        },
+        modules: false
       }
     ]
   ]
