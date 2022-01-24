@@ -2,7 +2,7 @@
 
 ## Motivation
 
-This lab exists to serve people with the following situation:
+This library exists to serve people with the following situation:
 
 - You've got data in an Airtable base
 - You want that data in your JavaScript code
