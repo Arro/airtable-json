@@ -4,7 +4,15 @@ import airtableJson from "./airtable-json.js"
 
 const max_ids_per_query = 40
 
-export default async function ({ auth_key, base_name, local, other, things }) {
+export default async function ({
+  auth_key,
+  base_name,
+  local,
+  other,
+  things,
+  flatten = false,
+  as
+}) {
   let foreign_ids = things.reduce((acc, thing) => {
     if (thing[local]) {
       return acc.concat(thing[local])
@@ -33,9 +41,22 @@ export default async function ({ auth_key, base_name, local, other, things }) {
 
   const new_things = things.map((thing) => {
     if (thing[local]) {
+      const transformed = flatten
+        ? all_results?.[thing[local]?.[0]]
+        : thing[local].map((id) => all_results[id])
+
+      if (as) {
+        let return_val = {
+          ...thing,
+          [as]: transformed
+        }
+        delete return_val[local]
+        return return_val
+      }
+
       return {
         ...thing,
-        [local]: thing[local].map((id) => all_results[id])
+        [local]: transformed
       }
     }
     return thing

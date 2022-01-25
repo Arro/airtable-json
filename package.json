@@ -1,7 +1,7 @@
 {
   "name": "airtable-json",
-  "version": "2.0.0",
-  "description": "get airtable records, but just in raw json form",
+  "version": "2.1.0",
+  "description": "A clean way to get Airtable data into JavaScript.",
   "author": "Phil Deschaine",
   "license": "MIT",
   "main": "dist/airtable-json.js",
@@ -22,14 +22,14 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.16.8",
-    "@babel/core": "^7.16.10",
+    "@babel/core": "^7.16.12",
     "@babel/eslint-parser": "^7.16.5",
-    "@babel/preset-env": "^7.16.10",
+    "@babel/preset-env": "^7.16.11",
     "@babel/register": "^7.16.9",
     "cross-env": "^7.0.3",
-    "dotenv": "^14.2.0",
+    "dotenv": "^14.3.0",
     "eslint": "^8.7.0",
-    "eslint-plugin-jest": "^25.7.0",
+    "eslint-plugin-jest": "^26.0.0",
     "jest": "^27.4.7",
     "nock": "^13.2.2",
     "prettier": "^2.5.1"

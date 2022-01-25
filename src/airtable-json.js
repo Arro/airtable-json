@@ -10,6 +10,12 @@ const airtableJson = async ({
   populate = [],
   filter
 }) => {
+  if (!base_name) {
+    throw "You need to pass in a base_name"
+  }
+  if (base_name?.length !== 17) {
+    throw "base_name should be exactly 17 characters"
+  }
   airtable.configure({ apiKey: auth_key })
   const base = airtable.base(base_name)
 
@@ -30,8 +36,16 @@ const airtableJson = async ({
       fetchNextPage()
     })
 
-  for (const { local, other } of populate) {
-    things = await handlePopulate({ auth_key, base_name, local, other, things })
+  for (const { local, other, flatten, as } of populate) {
+    things = await handlePopulate({
+      auth_key,
+      base_name,
+      local,
+      other,
+      things,
+      flatten,
+      as
+    })
   }
 
   return things

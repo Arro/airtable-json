@@ -1,5 +1,7 @@
 # airtable-json
 
+A clean way to get Airtable data into JavaScript.
+
 ## Motivation
 
 This library exists to serve people with the following situation:
@@ -145,8 +147,21 @@ will result in something like this:
 ]
 ```
 
+## Populate Arguments
+
+Populate accepts an object for its args.
+
+| Arg     | Type    | Description                                                 |
+| ------- | ------- | ----------------------------------------------------------- |
+| local   | string  | column name of the primary table                            |
+| other   | string  | table name of the matched data                              |
+| flatten | boolean | transform from array to object, comprised of the first item |
+| as      | string  | rename the populated field to a different name              |
+
 ## Todo
 
 - Recursive populate
 - when declaring populate, can just pass in one name if they're the same
 - delete backreference from populate
+- one object created, ala aws-sdk, where you declare auth_key etc
+- stop using 'things' as variable names, confusing

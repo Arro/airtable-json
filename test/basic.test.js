@@ -1,8 +1,8 @@
 import { jest } from "@jest/globals"
 import nock from "nock"
 import airtableJson from "#src/airtable-json.js"
-import videos_fixture from "#test/fixtures/videos.js"
-import { auth_key, base_name } from "#test/fixtures/config.js"
+import videos_fixture from "#test/_fixtures/videos.js"
+import { auth_key, base_name } from "#test/_fixtures/config.js"
 
 jest.useRealTimers()
 
@@ -18,5 +18,5 @@ test("basic airtable-json pull", async () => {
     primary: "Videos",
     view: "Main"
   })
-  expect(videos).toMatchObject(videos_fixture.json_resp)
+  expect(videos).toStrictEqual(videos_fixture.json_resp)
 })
