@@ -2,6 +2,8 @@
 
 A clean way to get Airtable data into JavaScript.
 
+[![CircleCI](https://img.shields.io/circleci/build/gh/Arro/airtable-json)](https://circleci.com/gh/Arro/airtable-json)
+
 ## Motivation
 
 This library exists to serve people with the following situation:
