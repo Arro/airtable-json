@@ -8,6 +8,7 @@ const airtableJson = async ({
   primary,
   view,
   populate = [],
+  sort,
   filter
 }) => {
   if (!base_name) {
@@ -22,6 +23,7 @@ const airtableJson = async ({
   let select_object = {}
   if (view) select_object.view = view
   if (filter) select_object.filterByFormula = filter
+  if (sort) select_object.sort = sort
 
   let things = []
   await base(primary)
